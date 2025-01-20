@@ -4,20 +4,31 @@ class Program
 {
     static void Main()
     {
-        Console.Write("Digite uma string: ");
+        Console.WriteLine("Informe uma string para inverter:");
         string input = Console.ReadLine();
-        string reversed = ReverseString(input);
 
-        Console.WriteLine($"String invertida: {reversed}");
+        if (string.IsNullOrEmpty(input))
+        {
+            Console.WriteLine("Entrada inválida! Por favor, insira uma string válida.");
+            return;
+        }
+
+        string inverted = InverterString(input);
+
+        Console.WriteLine("String invertida: " + inverted);
     }
 
-    static string ReverseString(string str)
+    static string InverterString(string str)
     {
-        char[] reversed = new char[str.Length];
-        for (int i = 0, j = str.Length - 1; i < str.Length; i++, j--)
+        char[] array = new char[str.Length];
+        int j = 0;
+
+        for (int i = str.Length - 1; i >= 0; i--)
         {
-            reversed[i] = str[j];
+            array[j] = str[i];
+            j++;
         }
-        return new string(reversed);
+
+        return new string(array);
     }
 }
